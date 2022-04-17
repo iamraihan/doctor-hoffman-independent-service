@@ -1,13 +1,44 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
+import React, { useEffect } from 'react';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { FaGoogle, FaGithub } from "react-icons/fa";
+import { useSignInWithEmailAndPassword, useSignInWithGoogle } from 'react-firebase-hooks/auth';
+import auth from '../../../firebase.init';
 
 const Login = () => {
+    const navigate = useNavigate()
+    const location = useLocation()
+    const [
+        signInWithEmailAndPassword,
+        user,
+        loading,
+        error,
+    ] = useSignInWithEmailAndPassword(auth);
+
+    // google user 
+    const [signInWithGoogle, googleUser, googleLoading, googleError] = useSignInWithGoogle(auth);
+    if (googleUser) {
+        navigate('/')
+    }
+
+    let from = location.state?.from?.pathname || "/";
+
+    if (user) {
+        navigate(from, { replace: true });
+    }
+
+    const submitHandler = event => {
+        event.preventDefault()
+        const email = event.target.email.value
+        const password = event.target.password.value
+
+        signInWithEmailAndPassword(email, password)
+    }
+
     return (
         <div className='mt-10 px-12 sm:px-24 md:px-48 lg:px-12 lg:mt-16 xl:px-24 xl:max-w-2xl mx-auto'>
             <p className='text-center text-gray-500'>Login in with</p>
             <div className='text-center flex justify-center mt-5'>
-                <button className='flex items-center mr-5 bg-indigo-500 px-5 py-1 rounded-md text-gray-100 hover:bg-indigo-600'> <FaGoogle className='mr-1'></FaGoogle> Google</button>
+                <button onClick={() => { signInWithGoogle() }} className='flex items-center mr-5 bg-indigo-500 px-5 py-1 rounded-md text-gray-100 hover:bg-indigo-600'> <FaGoogle className='mr-1'></FaGoogle> Google</button>
                 <button className='flex items-center mr-3 bg-indigo-500 px-5 py-1 rounded-md text-gray-100 hover:bg-indigo-600'> <FaGithub className='mr-1'></FaGithub> Github</button>
             </div>
 
@@ -22,10 +53,10 @@ const Login = () => {
             {/* <h2 className="text-center text-4xl text-indigo-900 font-display font-semibold lg:text-left xl:text-5xl
                     xl:text-bold mb-14">Log in
             </h2> */}
-            <form>
+            <form onSubmit={submitHandler}>
                 <div>
                     <div className="text-sm font-bold text-gray-700 tracking-wide">Email Address</div>
-                    <input className="w-full text-lg py-2 border-b border-gray-300 focus:outline-none focus:border-indigo-500" name='email' type="" placeholder="johndoe@email.com" />
+                    <input className="w-full text-lg py-2 border-b border-gray-300 focus:outline-none focus:border-indigo-500" name='email' type="email" placeholder="johndoe@email.com" required />
                 </div>
                 <div className="mt-8">
                     <div className="flex justify-between items-center">
@@ -37,7 +68,7 @@ const Login = () => {
                                         cursor-pointer'>Forgot Password?</Link>
                         </div>
                     </div>
-                    <input className="w-full text-lg py-2 border-b border-gray-300 focus:outline-none focus:border-indigo-500" name='password' type="" placeholder="Enter your password" />
+                    <input className="w-full text-lg py-2 border-b border-gray-300 focus:outline-none focus:border-indigo-500" name='password' type="password" placeholder="Enter your password" required />
                 </div>
                 <div className="mt-10">
                     <button className="bg-indigo-500 text-gray-100 p-4 w-full rounded-full tracking-wide

@@ -1,8 +1,28 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { FaGoogle, FaGithub } from "react-icons/fa";
+import { useCreateUserWithEmailAndPassword } from 'react-firebase-hooks/auth';
+import auth from '../../../../firebase.init';
 
 const SignUp = () => {
+    const navigate = useNavigate()
+    const [
+        createUserWithEmailAndPassword,
+        user,
+        loading,
+        error,
+    ] = useCreateUserWithEmailAndPassword(auth);
+
+
+    const submitHandler = event => {
+        event.preventDefault()
+        const email = event.target.email.value
+        const password = event.target.password.value
+        const confirmPass = event.target.confirm.value
+        createUserWithEmailAndPassword(email, password)
+        navigate('/')
+    }
+
     return (
         <div className='mt-10 px-12 sm:px-24 md:px-48 lg:px-12 lg:mt-16 xl:px-24 xl:max-w-2xl mx-auto'>
             <p className='text-center text-gray-500'>Login in with</p>
@@ -22,10 +42,10 @@ const SignUp = () => {
             {/* <h2 className="text-center text-4xl text-indigo-900 font-display font-semibold lg:text-left xl:text-5xl
                     xl:text-bold mb-14">Log in
             </h2> */}
-            <form>
+            <form onSubmit={submitHandler}>
                 <div>
                     <div className="text-sm font-bold text-gray-700 tracking-wide">Email Address</div>
-                    <input className="w-full text-lg py-2 border-b border-gray-300 focus:outline-none focus:border-indigo-500" name='email' type="" placeholder="johndoe@email.com" />
+                    <input className="w-full text-lg py-2 border-b border-gray-300 focus:outline-none focus:border-indigo-500" name='email' type="email" placeholder="johndoe@email.com" required />
                 </div>
 
                 {/* password field  */}
@@ -36,7 +56,7 @@ const SignUp = () => {
                         </div>
 
                     </div>
-                    <input className="w-full text-lg py-2 border-b border-gray-300 focus:outline-none focus:border-indigo-500" name='password' type="" placeholder="Enter your password" />
+                    <input className="w-full text-lg py-2 border-b border-gray-300 focus:outline-none focus:border-indigo-500" name='password' type="password" placeholder="Enter your password" required />
                 </div>
 
                 {/* confirm password field  */}
@@ -50,7 +70,7 @@ const SignUp = () => {
                                         cursor-pointer'>Forgot Password?</Link>
                         </div>
                     </div>
-                    <input className="w-full text-lg py-2 border-b border-gray-300 focus:outline-none focus:border-indigo-500" name='confirm' type="" placeholder="Confirm your password" />
+                    <input className="w-full text-lg py-2 border-b border-gray-300 focus:outline-none focus:border-indigo-500" name='confirm' type="password" placeholder="Confirm your password" required />
                 </div>
 
                 <div className="mt-10">
