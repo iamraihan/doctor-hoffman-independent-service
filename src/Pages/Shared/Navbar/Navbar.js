@@ -12,6 +12,7 @@ const Navbar = () => {
                 <Link className='ml-5 list-none' to='/services'><li>Services</li></Link>
                 <Link className='ml-5 list-none' to='/blogs'><li>Blogs</li></Link>
                 <Link className='ml-5 list-none' to='/about-me'><li>About Me</li></Link>
+                <Link to='/login'><button className=" ml-5 px-7 py-1 bg-sky-500 text-white rounded-md hover:bg-sky-700">Login</button></Link>
             </div>
         </nav>
     );
