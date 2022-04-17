@@ -47,7 +47,7 @@ const Home = () => {
                         <p className='font-bold mt-3'>Call : +1-2345-3455-33</p>
                     </div>
 
-                    <div className=' flex flex-col items-start ml-5 w-10/12	 '>
+                    <div className=' flex flex-col items-start ml-5 w-10/12	mt-5 md:mt-0'>
                         <h2 className='text-3xl font-bold mb-4'> <FaClock className='text-3xl inline-block'></FaClock> Opening hours</h2>
                         <p className='font-semibold flex justify-items-start my-3'>Far far away, behind the word mountains, far from the countries Vokalia
                         </p>
@@ -60,7 +60,6 @@ const Home = () => {
                             </p>
                         </div>
                         <div className='bg-gray-400 h-px w-full mt-2'></div>
-                        <p className='font-bold mt-3'>Call : +1-2345-3455-33</p>
                     </div>
                 </div>
             </div>
