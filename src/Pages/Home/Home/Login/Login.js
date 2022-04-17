@@ -5,15 +5,23 @@ import { FaGoogle, FaGithub } from "react-icons/fa";
 const Login = () => {
     return (
         <div className='mt-10 px-12 sm:px-24 md:px-48 lg:px-12 lg:mt-16 xl:px-24 xl:max-w-2xl mx-auto'>
-            <p className='text-center'>Sign in with</p>
-            <div className='text-center flex justify-center mt-2'>
-                <button className='flex items-center mr-3 bg-indigo-500 px-5 py-1 rounded-md text-gray-100 hover:bg-indigo-600'> <FaGoogle className='mr-1'></FaGoogle> Google</button>
+            <p className='text-center text-gray-500'>Login in with</p>
+            <div className='text-center flex justify-center mt-5'>
+                <button className='flex items-center mr-5 bg-indigo-500 px-5 py-1 rounded-md text-gray-100 hover:bg-indigo-600'> <FaGoogle className='mr-1'></FaGoogle> Google</button>
                 <button className='flex items-center mr-3 bg-indigo-500 px-5 py-1 rounded-md text-gray-100 hover:bg-indigo-600'> <FaGoogle className='mr-1'></FaGoogle> Github</button>
             </div>
 
-            <h2 className="text-center text-4xl text-indigo-900 font-display font-semibold lg:text-left xl:text-5xl
+            <div className='flex justify-center mt-5'>
+                <div className='bg-gray-500 h-px w-80 '></div>
+            </div>
+
+            <div className='mb-5'>
+                <p className='text-center mt-5 text-gray-500'>Or login in with credentials</p>
+            </div>
+
+            {/* <h2 className="text-center text-4xl text-indigo-900 font-display font-semibold lg:text-left xl:text-5xl
                     xl:text-bold mb-14">Log in
-            </h2>
+            </h2> */}
             <form>
                 <div>
                     <div className="text-sm font-bold text-gray-700 tracking-wide">Email Address</div>
