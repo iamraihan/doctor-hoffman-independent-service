@@ -30,7 +30,7 @@ const Home = () => {
             </div>
 
             {/* services section  */}
-            <div className='text-center py-6'>
+            <div className='text-center py-6 pt-12'>
                 <h2 className='uppercase text-4xl'>Services</h2>
                 <p>CHECK HERE HOW CAN I HELP YOU</p>
                 <div className=' h-0.5	 w-16 bg-sky-500 text-center inline-block '></div>
