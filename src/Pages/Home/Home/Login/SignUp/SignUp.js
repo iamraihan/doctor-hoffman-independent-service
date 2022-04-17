@@ -28,6 +28,7 @@ const SignUp = () => {
                     <input className="w-full text-lg py-2 border-b border-gray-300 focus:outline-none focus:border-indigo-500" name='email' type="" placeholder="johndoe@email.com" />
                 </div>
 
+                {/* password field  */}
                 <div className="mt-8">
                     <div className="flex justify-between items-center">
                         <div className="text-sm font-bold text-gray-700 tracking-wide">
@@ -38,7 +39,7 @@ const SignUp = () => {
                     <input className="w-full text-lg py-2 border-b border-gray-300 focus:outline-none focus:border-indigo-500" name='password' type="" placeholder="Enter your password" />
                 </div>
 
-
+                {/* confirm password field  */}
                 <div className="mt-8">
                     <div className="flex justify-between items-center">
                         <div className="text-sm font-bold text-gray-700 tracking-wide">
