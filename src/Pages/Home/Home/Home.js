@@ -1,7 +1,14 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import bannerOne from '../../../Images/slider/415.jpg'
+import Services from '../Services/Services';
 
 const Home = () => {
+    const [services, setServices] = useState([])
+    useEffect(() => {
+        fetch('services.json')
+            .then(res => res.json())
+            .then(data => setServices(data))
+    }, [])
     return (
         <div>
             <div className=" bg-gradient-to-r from-cyan-100 to-blue-500 grid md:grid-cols-2" style={{ height: 'calc(100vh - 80px)' }}>
@@ -27,6 +34,11 @@ const Home = () => {
                 <h2 className='uppercase text-4xl'>Services</h2>
                 <p>CHECK HERE HOW CAN I HELP YOU</p>
                 <div className=' h-0.5	 w-16 bg-sky-500 text-center inline-block '></div>
+                <div className='grid md:grid-cols-3 gap-5 max-w-screen-xl mx-auto mt-5'>
+                    {
+                        services.map(service => <Services key={service.id} service={service}></Services>)
+                    }
+                </div>
             </div>
         </div>
     );
