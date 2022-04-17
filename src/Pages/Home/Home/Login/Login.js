@@ -1,10 +1,13 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { FaGoogle, FaGithub } from "react-icons/fa";
 import { useSignInWithEmailAndPassword, useSignInWithGoogle } from 'react-firebase-hooks/auth';
 import auth from '../../../firebase.init';
 
+
+
 const Login = () => {
+
     const navigate = useNavigate()
     const location = useLocation()
     const [
@@ -13,6 +16,9 @@ const Login = () => {
         loading,
         error,
     ] = useSignInWithEmailAndPassword(auth);
+
+
+
 
     // google user 
     const [signInWithGoogle, googleUser, googleLoading, googleError] = useSignInWithGoogle(auth);
@@ -25,6 +31,7 @@ const Login = () => {
     if (user) {
         navigate(from, { replace: true });
     }
+    console.log(error);
 
     const submitHandler = event => {
         event.preventDefault()
