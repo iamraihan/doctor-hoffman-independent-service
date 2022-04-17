@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { FaGoogle, FaGithub } from "react-icons/fa";
 
-const Login = () => {
+const SignUp = () => {
     return (
         <div className='mt-10 px-12 sm:px-24 md:px-48 lg:px-12 lg:mt-16 xl:px-24 xl:max-w-2xl mx-auto'>
             <p className='text-center text-gray-500'>Login in with</p>
@@ -27,31 +27,44 @@ const Login = () => {
                     <div className="text-sm font-bold text-gray-700 tracking-wide">Email Address</div>
                     <input className="w-full text-lg py-2 border-b border-gray-300 focus:outline-none focus:border-indigo-500" name='email' type="" placeholder="johndoe@email.com" />
                 </div>
+
                 <div className="mt-8">
                     <div className="flex justify-between items-center">
                         <div className="text-sm font-bold text-gray-700 tracking-wide">
                             Password
+                        </div>
+
+                    </div>
+                    <input className="w-full text-lg py-2 border-b border-gray-300 focus:outline-none focus:border-indigo-500" name='password' type="" placeholder="Enter your password" />
+                </div>
+
+
+                <div className="mt-8">
+                    <div className="flex justify-between items-center">
+                        <div className="text-sm font-bold text-gray-700 tracking-wide">
+                            Confirm Password
                         </div>
                         <div>
                             <Link to='/' className='text-xs font-display font-semibold text-indigo-600 hover:text-indigo-800
                                         cursor-pointer'>Forgot Password?</Link>
                         </div>
                     </div>
-                    <input className="w-full text-lg py-2 border-b border-gray-300 focus:outline-none focus:border-indigo-500" name='password' type="" placeholder="Enter your password" />
+                    <input className="w-full text-lg py-2 border-b border-gray-300 focus:outline-none focus:border-indigo-500" name='confirm' type="" placeholder="Confirm your password" />
                 </div>
+
                 <div className="mt-10">
                     <button className="bg-indigo-500 text-gray-100 p-4 w-full rounded-full tracking-wide
                                 font-semibold font-display focus:outline-none focus:shadow-outline hover:bg-indigo-600
                                 shadow-lg">
-                        Log In
+                        Sign Up
                     </button>
                 </div>
             </form>
             <div className="mt-12 text-sm font-display font-semibold text-gray-700 text-center">
-                Don't have an account ? <Link to='/sign-up' className='cursor-pointer text-indigo-600 hover:text-indigo-800'>Sign Up</Link>
+                Already have an account ? <Link to='/login' className='cursor-pointer text-indigo-600 hover:text-indigo-800'>Login</Link>
             </div>
         </div>
     );
 };
 
-export default Login;
+export default SignUp;
