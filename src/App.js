@@ -8,6 +8,7 @@ import Login from './Pages/Home/Home/Login/Login';
 import SignUp from './Pages/Home/Home/Login/SignUp/SignUp';
 import NotFound from './Pages/Home/NotFound/NotFound';
 import RequireAuth from './Pages/RequireAuth/RequireAuth';
+import ServicesPage from './Pages/ServicesPage/ServicesPage';
 import Footer from './Pages/Shared/Footer/Footer';
 import Navbar from './Pages/Shared/Navbar/Navbar';
 
@@ -25,6 +26,7 @@ function App() {
         }></Route>
         <Route path='/login' element={<Login></Login>}></Route>
         <Route path='/sign-up' element={<SignUp></SignUp>}></Route>
+        <Route path='service-page' element={<ServicesPage></ServicesPage>}></Route>
         <Route path='/blogs' element={<Blogs></Blogs>}></Route>
         <Route path='about-me' element={<AboutMe></AboutMe>}></Route>
         <Route path='*' element={<NotFound></NotFound>}></Route>

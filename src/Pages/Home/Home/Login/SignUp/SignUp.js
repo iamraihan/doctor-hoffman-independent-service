@@ -1,7 +1,7 @@
 import React, { useRef } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { FaGoogle, FaGithub } from "react-icons/fa";
-import { useCreateUserWithEmailAndPassword, useSendPasswordResetEmail } from 'react-firebase-hooks/auth';
+import { useCreateUserWithEmailAndPassword, useSendPasswordResetEmail, useSignInWithGoogle } from 'react-firebase-hooks/auth';
 import auth from '../../../../firebase.init';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
@@ -18,7 +18,10 @@ const SignUp = () => {
     ] = useCreateUserWithEmailAndPassword(auth, { sendEmailVerification: true });
 
     const [sendPasswordResetEmail, sending] = useSendPasswordResetEmail(auth);
-
+    const [signInWithGoogle, googleUser, googleLoading, googleError] = useSignInWithGoogle(auth);
+    if (googleUser) {
+        navigate('/')
+    }
     if (user || sending) {
         <Loading></Loading>
     }
@@ -47,7 +50,7 @@ const SignUp = () => {
         <div className='mt-10 px-12 sm:px-24 md:px-48 lg:px-12 lg:mt-16 xl:px-24 xl:max-w-2xl mx-auto'>
             <p className='text-center text-gray-500'>Login in with</p>
             <div className='text-center flex justify-center mt-5'>
-                <button className='flex items-center mr-5 bg-indigo-500 px-5 py-1 rounded-md text-gray-100 hover:bg-indigo-600'> <FaGoogle className='mr-1'></FaGoogle> Google</button>
+                <button onClick={() => signInWithGoogle()} className='flex items-center mr-5 bg-indigo-500 px-5 py-1 rounded-md text-gray-100 hover:bg-indigo-600'> <FaGoogle className='mr-1'></FaGoogle> Google</button>
                 <button className='flex items-center mr-3 bg-indigo-500 px-5 py-1 rounded-md text-gray-100 hover:bg-indigo-600'> <FaGithub className='mr-1'></FaGithub> Github</button>
             </div>
 

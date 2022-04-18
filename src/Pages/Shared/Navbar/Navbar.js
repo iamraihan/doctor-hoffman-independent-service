@@ -26,12 +26,12 @@ const Navbar = () => {
                     <CustomLink className='ml-5 pb-' to='/'>Home</CustomLink>
                     <CustomLink className='ml-5 pb-' to='/about-me'>About Me</CustomLink>
 
-                    <CustomLink className='ml-5 pb-' to='/services'>Services</CustomLink>
+                    <CustomLink className='ml-5 pb-' to='/service-page'>Services</CustomLink>
                     <CustomLink className='ml-5 pb-' to='/blogs'>Blogs</CustomLink>
                     {
-                        user ? <CustomLink to='/login'><button onClick={logout} className=" ml-5 px-7 py-1 bg-sky-500 text-white rounded-md hover:bg-sky-700">LogOut</button></CustomLink>
+                        user ? <Link to='/login'><button onClick={logout} className=" ml-5 px-7 py-1 bg-sky-500 text-white rounded-md hover:bg-sky-700">LogOut</button></Link>
                             :
-                            <CustomLink to='/login'><button className=" ml-5 px-7 py-1 bg-sky-500 text-white rounded-md hover:bg-sky-700">Login</button></CustomLink>
+                            <Link to='/login'><button className=" ml-5 px-7 py-1 bg-sky-500 text-white rounded-md hover:bg-sky-700">Login</button></Link>
                     }
                 </div>
             </nav>

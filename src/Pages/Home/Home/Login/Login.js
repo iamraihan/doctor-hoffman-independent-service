@@ -30,12 +30,11 @@ const Login = () => {
     // google user 
     const [signInWithGoogle, googleUser, googleLoading, googleError] = useSignInWithGoogle(auth);
     if (googleUser) {
-        navigate('/')
     }
 
     let from = location.state?.from?.pathname || "/";
 
-    if (user) {
+    if (user || googleUser) {
         navigate(from, { replace: true });
     }
     let errorElement;
