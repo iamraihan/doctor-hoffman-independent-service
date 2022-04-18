@@ -23,8 +23,9 @@ const Navbar = () => {
                     <Link to='/'>Hoffman</Link>
                 </div>
                 <div className='flex '>
-                    <CustomLink className='ml-5 pb-' to='/about-me'>About Me</CustomLink>
                     <CustomLink className='ml-5 pb-' to='/'>Home</CustomLink>
+                    <CustomLink className='ml-5 pb-' to='/about-me'>About Me</CustomLink>
+
                     <CustomLink className='ml-5 pb-' to='/services'>Services</CustomLink>
                     <CustomLink className='ml-5 pb-' to='/blogs'>Blogs</CustomLink>
                     {
