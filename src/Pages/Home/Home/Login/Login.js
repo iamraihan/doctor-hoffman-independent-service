@@ -1,12 +1,16 @@
-import React, { useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { FaGoogle, FaGithub } from "react-icons/fa";
-import { useSignInWithEmailAndPassword, useSignInWithGoogle } from 'react-firebase-hooks/auth';
+import { useSendPasswordResetEmail, useSignInWithEmailAndPassword, useSignInWithGoogle } from 'react-firebase-hooks/auth';
 import auth from '../../../firebase.init';
-
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import { async } from '@firebase/util';
+import Loading from '../../../Shared/Loading/Loading';
 
 
 const Login = () => {
+    const emailRef = useRef()
 
     const navigate = useNavigate()
     const location = useLocation()
@@ -17,8 +21,11 @@ const Login = () => {
         error,
     ] = useSignInWithEmailAndPassword(auth);
 
+    const [sendPasswordResetEmail, sending] = useSendPasswordResetEmail(auth);
 
-
+    if (user || sending) {
+        <Loading></Loading>
+    }
 
     // google user 
     const [signInWithGoogle, googleUser, googleLoading, googleError] = useSignInWithGoogle(auth);
@@ -31,8 +38,10 @@ const Login = () => {
     if (user) {
         navigate(from, { replace: true });
     }
-    console.log(error);
-
+    let errorElement;
+    if (error) {
+        errorElement = <p className='text-red-400'>{error.message}</p>
+    }
     const submitHandler = event => {
         event.preventDefault()
         const email = event.target.email.value
@@ -40,6 +49,17 @@ const Login = () => {
 
         signInWithEmailAndPassword(email, password)
     }
+
+    const resetPassword = async () => {
+        const email = emailRef.current.value
+        if (email) {
+            await sendPasswordResetEmail(email);
+            toast('Sent email');
+        } else {
+            toast('Please enter your email!!')
+        }
+    }
+
 
     return (
         <div className='mt-10 px-12 sm:px-24 md:px-48 lg:px-12 lg:mt-16 xl:px-24 xl:max-w-2xl mx-auto'>
@@ -63,20 +83,21 @@ const Login = () => {
             <form onSubmit={submitHandler}>
                 <div>
                     <div className="text-sm font-bold text-gray-700 tracking-wide">Email Address</div>
-                    <input className="w-full text-lg py-2 border-b border-gray-300 focus:outline-none focus:border-indigo-500" name='email' type="email" placeholder="johndoe@email.com" required />
+                    <input ref={emailRef} className="w-full text-lg py-2 border-b border-gray-300 focus:outline-none focus:border-indigo-500" name='email' type="email" placeholder="johndoe@email.com" required />
                 </div>
                 <div className="mt-8">
                     <div className="flex justify-between items-center">
                         <div className="text-sm font-bold text-gray-700 tracking-wide">
                             Password
                         </div>
-                        <div>
-                            <Link to='/' className='text-xs font-display font-semibold text-indigo-600 hover:text-indigo-800
-                                        cursor-pointer'>Forgot Password?</Link>
-                        </div>
+                        {/* <div>
+                            <button onClick={resetPassword} className='text-xs font-display font-semibold text-indigo-600 hover:text-indigo-800
+                                        cursor-pointer'>Forgot Password?</button>
+                        </div> */}
                     </div>
                     <input className="w-full text-lg py-2 border-b border-gray-300 focus:outline-none focus:border-indigo-500" name='password' type="password" placeholder="Enter your password" required />
                 </div>
+                {errorElement}
                 <div className="mt-10">
                     <button className="bg-indigo-500 text-gray-100 p-4 w-full rounded-full tracking-wide
                                 font-semibold font-display focus:outline-none focus:shadow-outline hover:bg-indigo-600
@@ -88,6 +109,11 @@ const Login = () => {
             <div className="mt-12 text-sm font-display font-semibold text-gray-700 text-center">
                 Don't have an account ? <Link to='/sign-up' className='cursor-pointer text-indigo-600 hover:text-indigo-800'>Sign Up</Link>
             </div>
+            <div className='text-center'>
+                <button onClick={resetPassword} className=' mt-5 font-display font-semibold text-indigo-600 hover:text-indigo-800
+                                        cursor-pointer'>Forgot Password?</button>
+            </div>
+            <ToastContainer />
         </div>
     );
 };
