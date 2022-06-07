@@ -1,8 +1,18 @@
 # Doctor Hoffman
 
-Live site: [https://doctor-hoffman.web.app](https://doctor-hoffman.web.app).
+## Live site: [https://doctor-hoffman.web.app](https://doctor-hoffman.web.app).
 
-## Website main part
+## The technology framework and library I have used.
+
+- I use react for build this website.
+- React router for navigate one page to another page also active route.
+- React firebase hook which makes easier authentication setup.
+- React icons.
+- React toasty which use in the reset password option.
+- and most importantly tailwind CSS which makes easier responsive a website also easily set up website layout.
+
+## Features
+
 - Its a personal website for a doctor.
 - the website has a responsive navbar.
 - the website has a banner where the focus Mr Hoffman man service and booking.
@@ -12,12 +22,3 @@ Live site: [https://doctor-hoffman.web.app](https://doctor-hoffman.web.app).
 - also give my personal simple intro like name, photo, hobby and more.
 - a private route where need to login of a user.
 - registration from, login form, firebase authentication, footer section.
-
-## The technology framework and library I have used.
-- I use react for build this website.
-- React router for navigate one page to another page also active route.
-- React firebase hook which makes easier authentication setup.
-- React icons.
-- React toasty which use in the reset password option.
-- and most importantly tailwind CSS which makes easier responsive a website also easily set up website layout.
-
